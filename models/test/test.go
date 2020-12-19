@@ -6,5 +6,5 @@ type Test struct {
 	testName  string
 	createdAt string
 	updatedAt string
-	questions Question
+	questions []Question
 }

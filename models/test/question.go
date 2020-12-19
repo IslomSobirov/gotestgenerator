@@ -7,4 +7,5 @@ type Question struct {
 	testID       int
 	createdAt    string
 	updatedAt    string
+	options      []Option
 }

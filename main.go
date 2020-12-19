@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/testapp/models/test"
+)
 
 func main() {
-	fmt.Println("Yes")
+	// test.CreateOption("First option", true, 1, 1)
+	fmt.Println(test.GetByQuestionID(1))
+	// test.DeleteOption(1)
 }
