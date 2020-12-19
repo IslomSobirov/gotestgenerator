@@ -29,11 +29,6 @@ func CreateQuestion(questionName string, testID int) {
 	}
 }
 
-//QuestionOptions get the options of question
-func QuestionOptions(id int) []Option {
-	return GetByQuestionID(id)
-}
-
 //DeleteQuestion delete quesion by id or quesionID
 func DeleteQuestion(id int, testID bool) {
 	db := db.Connect()
@@ -79,6 +74,8 @@ func QuestionByTestID(testID int) []Question {
 			&question.createdAt,
 			&question.updatedAt,
 		)
+
+		question.options = OptionByQuestionID(question.id)
 	}
 
 	questions = append(questions, question)

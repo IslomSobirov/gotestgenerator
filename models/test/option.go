@@ -60,8 +60,8 @@ func DeleteOption(id int) {
 	}
 }
 
-//GetByQuestionID get options by question id
-func GetByQuestionID(qID int) []Option {
+//OptionByQuestionID get options by question id
+func OptionByQuestionID(qID int) []Option {
 	db := db.Connect()
 	defer db.Close()
 	rows, err := db.Query(
