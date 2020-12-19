@@ -18,6 +18,7 @@ const optionTable = "test_option"
 //CreateOption insert option to test_option table
 func CreateOption(optName string, trueOption bool, testID int, questionID int) {
 	db := db.Connect()
+	defer db.Close()
 	_, err := db.Query("Insert into "+optionTable+
 		" (optionName, trueOption, testID, questionID, createdAt) value (?, ?, ?, ?, NOW()) ",
 		optName, trueOption, testID, questionID)
@@ -39,6 +40,7 @@ func UpdateOption(id int, optName string, trueOption bool, testID int, questionI
 		questionID,
 		id,
 	)
+	defer db.Close()
 
 	if err != nil {
 		panic(err)
@@ -48,6 +50,7 @@ func UpdateOption(id int, optName string, trueOption bool, testID int, questionI
 //DeleteOption delete from test_option
 func DeleteOption(id int) {
 	db := db.Connect()
+	defer db.Close()
 	_, err := db.Query(
 		"DELETE FROM "+optionTable+" where id = ?",
 		id,
@@ -60,6 +63,7 @@ func DeleteOption(id int) {
 //GetByQuestionID get options by question id
 func GetByQuestionID(qID int) []Option {
 	db := db.Connect()
+	defer db.Close()
 	rows, err := db.Query(
 		"Select id, optionName, trueOption, testID, questionID, createdAt, updatedAt from "+optionTable+" where questionID = ? ",
 		qID,

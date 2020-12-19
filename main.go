@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-	// test.CreateOption("First option", true, 1, 1)
-	fmt.Println(test.GetByQuestionID(1))
-	// test.DeleteOption(1)
+	// test.CreateQuestion("second question", 2)
+	fmt.Println(test.QuestionByTestID(2))
 }
