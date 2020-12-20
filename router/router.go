@@ -2,10 +2,9 @@ package router
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/testapp/models/test"
+	"github.com/testapp/controllers/testcontroller"
 )
 
 //Init initialize all the routes
@@ -15,9 +14,9 @@ func Init() {
 		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
 	}
 
-	r.GET("/tests", func(c *gin.Context) {
-		c.JSON(http.StatusOK, test.All())
-	})
+	r.GET("/tests", testcontroller.Tests)
+	r.POST("/tests", testcontroller.AddTest)
+	r.PUT("/tests/:id", testcontroller.UpdateTest)
 
 	// Listen and Server in http://0.0.0.0:8080
 	r.Run()
