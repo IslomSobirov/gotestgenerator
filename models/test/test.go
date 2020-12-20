@@ -1,14 +1,16 @@
 package test
 
-import "github.com/testapp/db"
+import (
+	"github.com/testapp/db"
+)
 
 //Test struct for the model
 type Test struct {
-	id        int
-	testName  string
-	createdAt string
-	updatedAt string
-	questions []Question
+	ID        int        `json:"id"`
+	TestName  string     `json:"testName"`
+	CreatedAt string     `json:"createdAt"`
+	UpdatedAt string     `json:"updatedAt"`
+	Questions []Question `json:"questions"`
 }
 
 var testTable = "test"
@@ -71,16 +73,15 @@ func All() []Test {
 
 	for rows.Next() {
 		rows.Scan(
-			&test.id,
-			&test.testName,
-			&test.createdAt,
-			&test.updatedAt,
+			&test.ID,
+			&test.TestName,
+			&test.CreatedAt,
+			&test.UpdatedAt,
 		)
 
-		test.questions = QuestionByTestID(test.id)
+		tests = append(tests, test)
+		test.Questions = QuestionByTestID(test.ID)
 	}
-
-	tests = append(tests, test)
 
 	return tests
 }

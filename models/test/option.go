@@ -4,13 +4,13 @@ import "github.com/testapp/db"
 
 //Option of the Question
 type Option struct {
-	id         int
-	optionName string
-	trueOption bool
-	testID     int
-	questionID int
-	createdAt  string
-	updatedAt  string
+	ID         int    `json:"id"`
+	OptionName string `json:"optionName"`
+	TrueOption bool   `json:"trueOption"`
+	TestID     int    `json:"testID"`
+	QuestionID int    `json:"questionID"`
+	CreatedAt  string `json:"createdAt"`
+	UpdatedAt  string `json:"updatedAt"`
 }
 
 const optionTable = "test_option"
@@ -65,7 +65,8 @@ func OptionByQuestionID(qID int) []Option {
 	db := db.Connect()
 	defer db.Close()
 	rows, err := db.Query(
-		"Select id, optionName, trueOption, testID, questionID, createdAt, updatedAt from "+optionTable+" where questionID = ? ",
+		"Select id, optionName, trueOption, testID, questionID, createdAt, updatedAt from "+
+			optionTable+" where questionID = ? ",
 		qID,
 	)
 	if err != nil {
@@ -75,16 +76,16 @@ func OptionByQuestionID(qID int) []Option {
 	var Opt Option
 	for rows.Next() {
 		rows.Scan(
-			&Opt.id,
-			&Opt.optionName,
-			&Opt.trueOption,
-			&Opt.testID,
-			&Opt.questionID,
-			&Opt.createdAt,
-			&Opt.updatedAt,
+			&Opt.ID,
+			&Opt.OptionName,
+			&Opt.TrueOption,
+			&Opt.TestID,
+			&Opt.QuestionID,
+			&Opt.CreatedAt,
+			&Opt.UpdatedAt,
 		)
+		Options = append(Options, Opt)
 	}
-	Options = append(Options, Opt)
 
 	return Options
 }

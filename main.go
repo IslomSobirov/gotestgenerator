@@ -1,12 +1,8 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/testapp/models/test"
-)
+import "github.com/testapp/router"
 
 func main() {
-	// test.CreateQuestion("second question", 2)
-	fmt.Println(test.QuestionByTestID(2))
+	router.Init()
+	// test.CreateTest("this is the third test")
 }

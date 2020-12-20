@@ -4,12 +4,12 @@ import "github.com/testapp/db"
 
 //Question for Test
 type Question struct {
-	id           int
-	questionName string
-	testID       int
-	createdAt    string
-	updatedAt    string
-	options      []Option
+	ID           int      `json:"id"`
+	QuestionName string   `json:"questionName"`
+	TestID       int      `json:"testID"`
+	CreatedAt    string   `json:"createdAt"`
+	UpdatedAt    string   `json:"updatedAt"`
+	Options      []Option `json:"options"`
 }
 
 const questionTable = "test_question"
@@ -68,17 +68,16 @@ func QuestionByTestID(testID int) []Question {
 
 	for rows.Next() {
 		rows.Scan(
-			&question.id,
-			&question.questionName,
-			&question.testID,
-			&question.createdAt,
-			&question.updatedAt,
+			&question.ID,
+			&question.QuestionName,
+			&question.TestID,
+			&question.CreatedAt,
+			&question.UpdatedAt,
 		)
 
-		question.options = OptionByQuestionID(question.id)
+		question.Options = OptionByQuestionID(question.ID)
+		questions = append(questions, question)
 	}
-
-	questions = append(questions, question)
 
 	return questions
 }
