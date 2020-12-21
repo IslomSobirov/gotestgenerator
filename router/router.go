@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/testapp/controllers/questioncontroller"
 	"github.com/testapp/controllers/testcontroller"
 )
 
@@ -17,6 +18,7 @@ func Init() {
 	r.GET("/tests", testcontroller.Tests)
 	r.POST("/tests", testcontroller.AddTest)
 	r.PUT("/tests/:id", testcontroller.UpdateTest)
+	r.POST("/tests/question", questioncontroller.AddQuestion)
 
 	// Listen and Server in http://0.0.0.0:8080
 	r.Run()
