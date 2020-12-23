@@ -18,7 +18,9 @@ func Init() {
 	r.GET("/tests", testcontroller.Tests)
 	r.POST("/tests", testcontroller.AddTest)
 	r.PUT("/tests/:id", testcontroller.UpdateTest)
+
 	r.POST("/tests/question", questioncontroller.AddQuestion)
+	r.DELETE("/tests/questions/:id", questioncontroller.DeleteQuestion)
 
 	// Listen and Server in http://0.0.0.0:8080
 	r.Run()

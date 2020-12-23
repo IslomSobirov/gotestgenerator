@@ -2,6 +2,7 @@ package questioncontroller
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/testapp/models/test"
@@ -40,4 +41,11 @@ func UpdateQuestion(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "test has been updated successfully",
 	})
+}
+
+//DeleteQuestion delete question and its options
+func DeleteQuestion(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	test.DeleteQuestion(id, false)
+	test.DeleteOption(id, true)
 }

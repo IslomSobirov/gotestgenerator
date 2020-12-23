@@ -48,11 +48,17 @@ func UpdateOption(id int, optName string, trueOption bool, testID int, questionI
 }
 
 //DeleteOption delete from test_option
-func DeleteOption(id int) {
+func DeleteOption(id int, quesionID bool) {
 	db := db.Connect()
 	defer db.Close()
+	var idType string
+	if quesionID {
+		idType = " questionID "
+	} else {
+		idType = " id "
+	}
 	_, err := db.Query(
-		"DELETE FROM "+optionTable+" where id = ?",
+		"DELETE FROM "+optionTable+" where "+idType+" = ?",
 		id,
 	)
 	if err != nil {
