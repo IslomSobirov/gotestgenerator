@@ -59,6 +59,7 @@ func DeleteQuestion(id int, testID bool) {
 		"DELETE FROM "+questionTable+" where "+idType+" = ?",
 		id,
 	)
+	DeleteOption(id, true)
 	if err != nil {
 		panic(err)
 	}

@@ -49,3 +49,9 @@ func UpdateTest(c *gin.Context) {
 		"message": "test has been updated successfully",
 	})
 }
+
+//DeleteTest delete test from database
+func DeleteTest(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	test.DeleteTest(id)
+}

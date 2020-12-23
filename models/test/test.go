@@ -51,7 +51,7 @@ func DeleteTest(id int) {
 		"Delete from "+testTable+" where id = ?",
 		id,
 	)
-
+	DeleteQuestion(id, true)
 	if err != nil {
 		panic(err)
 	}
