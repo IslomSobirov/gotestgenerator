@@ -29,6 +29,20 @@ func CreateQuestion(questionName string, testID int) {
 	}
 }
 
+//UpdateQuestion update certain question
+func UpdateQuestion(id int, testID int, questionName string) {
+	db := db.Connect()
+	defer db.Close()
+	_, err := db.Query(
+		"Update from "+questionTable+" set questionName = ?, testID = ?, updatedAt = NOW()",
+		questionName,
+		testID,
+	)
+	if err != nil {
+		panic(err)
+	}
+}
+
 //DeleteQuestion delete quesion by id or quesionID
 func DeleteQuestion(id int, testID bool) {
 	db := db.Connect()
