@@ -26,6 +26,8 @@ func Init() {
 	r.DELETE("/tests/questions/:id", questioncontroller.DeleteQuestion)
 
 	r.POST("/tests/question/option", optioncontroller.AddOption)
+	r.PUT("/tests/question/option/:id", optioncontroller.UpdateOption)
+	r.DELETE("/tests/question/option/:id", optioncontroller.DeleteOption)
 
 	// Listen and Server in http://0.0.0.0:8080
 	r.Run()
