@@ -21,13 +21,13 @@ func Init() {
 	r.PUT("/tests/:id", testcontroller.UpdateTest)
 	r.DELETE("/tests/:id", testcontroller.DeleteTest)
 
-	r.POST("/tests/question", questioncontroller.AddQuestion)
-	r.PUT("/tests/question/:id", questioncontroller.UpdateQuestion)
-	r.DELETE("/tests/questions/:id", questioncontroller.DeleteQuestion)
+	r.POST("/question", questioncontroller.AddQuestion)
+	r.PUT("/question/:id", questioncontroller.UpdateQuestion)
+	r.DELETE("/questions/:id", questioncontroller.DeleteQuestion)
 
-	r.POST("/tests/question/option", optioncontroller.AddOption)
-	r.PUT("/tests/question/option/:id", optioncontroller.UpdateOption)
-	r.DELETE("/tests/question/option/:id", optioncontroller.DeleteOption)
+	r.POST("/option", optioncontroller.AddOption)
+	r.PUT("/option/:id", optioncontroller.UpdateOption)
+	r.DELETE("/option/:id", optioncontroller.DeleteOption)
 
 	// Listen and Server in http://0.0.0.0:8080
 	r.Run()
