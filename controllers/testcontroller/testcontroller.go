@@ -54,4 +54,8 @@ func UpdateTest(c *gin.Context) {
 func DeleteTest(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	test.DeleteTest(id)
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "test has been deleted successfully",
+	})
 }
