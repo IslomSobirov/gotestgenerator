@@ -1,6 +1,7 @@
 package testcontroller
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 
@@ -58,4 +59,14 @@ func DeleteTest(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "test has been deleted successfully",
 	})
+}
+
+//TestOptions Get Options by test id
+func TestOptions(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	c.JSON(http.StatusOK, test.OptionByTestID(id))
 }
