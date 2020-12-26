@@ -95,3 +95,33 @@ func OptionByQuestionID(qID int) []Option {
 
 	return Options
 }
+
+//OptionByTestID get options by question id
+func OptionByTestID(testID int) []Option {
+	db := db.Connect()
+	defer db.Close()
+	rows, err := db.Query(
+		"Select id, optionName, trueOption, testID, questionID, createdAt, updatedAt from "+
+			optionTable+" where testID = ? ",
+		testID,
+	)
+	if err != nil {
+		panic(err)
+	}
+	var Options []Option
+	var Opt Option
+	for rows.Next() {
+		rows.Scan(
+			&Opt.ID,
+			&Opt.OptionName,
+			&Opt.TrueOption,
+			&Opt.TestID,
+			&Opt.QuestionID,
+			&Opt.CreatedAt,
+			&Opt.UpdatedAt,
+		)
+		Options = append(Options, Opt)
+	}
+
+	return Options
+}
