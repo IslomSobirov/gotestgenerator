@@ -21,6 +21,7 @@ func Init() {
 	r.PUT("/tests/:id", testcontroller.UpdateTest)
 	r.DELETE("/tests/:id", testcontroller.DeleteTest)
 
+	r.GET("/question/options/:id", questioncontroller.QuestionOptions)
 	r.POST("/question", questioncontroller.AddQuestion)
 	r.PUT("/question/:id", questioncontroller.UpdateQuestion)
 	r.DELETE("/questions/:id", questioncontroller.DeleteQuestion)
