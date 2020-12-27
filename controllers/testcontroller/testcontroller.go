@@ -61,12 +61,19 @@ func DeleteTest(c *gin.Context) {
 	})
 }
 
-//TestOptions Get Options by test id
-func TestOptions(c *gin.Context) {
+//TestQuestions Get Options by test id
+func TestQuestions(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		log.Fatal(err)
 	}
+	questions := test.QuestionByTestID(id)
+	if questions == nil {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Test with id: " + strconv.Itoa(id) + " does not have questions yet",
+		})
+		return
+	}
 
-	c.JSON(http.StatusOK, test.OptionByTestID(id))
+	c.JSON(http.StatusOK, questions)
 }

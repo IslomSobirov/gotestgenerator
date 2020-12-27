@@ -17,6 +17,7 @@ func Init() {
 	}
 
 	r.GET("/tests", testcontroller.Tests)
+	r.GET("/tests/:id/questions/", testcontroller.TestQuestions)
 	r.POST("/tests", testcontroller.AddTest)
 	r.PUT("/tests/:id", testcontroller.UpdateTest)
 	r.DELETE("/tests/:id", testcontroller.DeleteTest)
