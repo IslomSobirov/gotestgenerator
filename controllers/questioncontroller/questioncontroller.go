@@ -51,3 +51,9 @@ func DeleteQuestion(c *gin.Context) {
 	test.DeleteQuestion(id, false)
 	test.DeleteOption(id, true)
 }
+
+//QuestionOptions get options of questions
+func QuestionOptions(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	c.JSON(http.StatusOK, test.OptionByQuestionID(id))
+}
