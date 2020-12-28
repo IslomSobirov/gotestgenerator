@@ -1,6 +1,11 @@
 package test
 
-import "github.com/testapp/db"
+import (
+	"log"
+
+	"github.com/testapp/db"
+	"github.com/testapp/helper"
+)
 
 //Option of the Question
 type Option struct {
@@ -23,7 +28,8 @@ func CreateOption(optName string, trueOption bool, testID int, questionID int) {
 		" (optionName, trueOption, testID, questionID, createdAt) value (?, ?, ?, ?, NOW()) ",
 		optName, trueOption, testID, questionID)
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 
 }
@@ -43,7 +49,8 @@ func UpdateOption(id int, optName string, trueOption bool, testID int, questionI
 	defer db.Close()
 
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 }
 
@@ -62,7 +69,8 @@ func DeleteOption(id int, quesionID bool) {
 		id,
 	)
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 }
 
@@ -76,7 +84,8 @@ func OptionByQuestionID(qID int) []Option {
 		qID,
 	)
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 	var Options []Option
 	var Opt Option
@@ -106,7 +115,8 @@ func OptionByTestID(testID int) []Option {
 		testID,
 	)
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 	var Options []Option
 	var Opt Option
