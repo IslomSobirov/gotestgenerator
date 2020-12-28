@@ -1,7 +1,10 @@
 package test
 
 import (
+	"log"
+
 	"github.com/testapp/db"
+	"github.com/testapp/helper"
 )
 
 //Test struct for the model
@@ -25,7 +28,8 @@ func CreateTest(testName string) {
 	)
 
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 }
 
@@ -38,7 +42,8 @@ func UpdateTest(id int, testName string) {
 		testName,
 	)
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 }
 
@@ -53,7 +58,8 @@ func DeleteTest(id int) {
 	)
 	DeleteQuestion(id, true)
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 }
 
@@ -66,7 +72,8 @@ func All() []Test {
 		"SELECT id, testName, createdAt, updatedAt from " + testTable,
 	)
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 	var test Test
 	var tests []Test

@@ -1,6 +1,11 @@
 package test
 
-import "github.com/testapp/db"
+import (
+	"log"
+
+	"github.com/testapp/db"
+	"github.com/testapp/helper"
+)
 
 //Question for Test
 type Question struct {
@@ -25,7 +30,8 @@ func CreateQuestion(questionName string, testID int) {
 	)
 
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 }
 
@@ -39,7 +45,8 @@ func UpdateQuestion(id int, testID int, questionName string) {
 		testID,
 	)
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 }
 
@@ -61,7 +68,8 @@ func DeleteQuestion(id int, testID bool) {
 	)
 	DeleteOption(id, true)
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 }
 
@@ -75,7 +83,8 @@ func QuestionByTestID(testID int) []Question {
 	)
 
 	if err != nil {
-		panic(err)
+		helper.LogError(err)
+		log.Fatalf(err.Error())
 	}
 
 	var question Question
