@@ -24,10 +24,10 @@ RUN go build -o main .
 WORKDIR /
 
 # Copy binary from build to main folder
-# RUN cp /build/main .
-
+RUN cp /main
+ENV port=8080
 # Export necessary port
-EXPOSE 3000
+EXPOSE 8080
 
 # Command to run when starting the container
 CMD ["/main"]
