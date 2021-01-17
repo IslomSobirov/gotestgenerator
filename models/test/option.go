@@ -21,17 +21,24 @@ type Option struct {
 const optionTable = "test_option"
 
 //CreateOption insert option to test_option table
-func CreateOption(optName string, trueOption bool, testID int, questionID int) {
+func CreateOption(optName string, trueOption bool, testID int, questionID int) int64 {
 	db := db.Connect()
 	defer db.Close()
-	_, err := db.Query("Insert into "+optionTable+
+	res, err := db.Exec("Insert into "+optionTable+
 		" (optionName, trueOption, testID, questionID, createdAt) value (?, ?, ?, ?, NOW()) ",
 		optName, trueOption, testID, questionID)
 	if err != nil {
 		helper.LogError(err)
 		log.Fatalf(err.Error())
 	}
+	id, errorID := res.LastInsertId()
 
+	if errorID != nil {
+		helper.LogError(errorID)
+		log.Fatalf(errorID.Error())
+	}
+
+	return id
 }
 
 //UpdateOption update the option of question

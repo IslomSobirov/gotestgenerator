@@ -19,7 +19,7 @@ func AddOption(c *gin.Context) {
 		})
 	}
 
-	test.CreateOption(
+	id := test.CreateOption(
 		optionJSON.OptionName,
 		optionJSON.TrueOption,
 		optionJSON.TestID,
@@ -27,7 +27,8 @@ func AddOption(c *gin.Context) {
 	)
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Option has been created successfully",
+		"message":                "Option has been created successfully",
+		"Id of the test created": id,
 	})
 
 }
